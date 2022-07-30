@@ -20,4 +20,4 @@ EXPOSE ${PORT}
 
 CMD /etc/init
 
-USER xray
+USER project
