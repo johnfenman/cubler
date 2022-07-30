@@ -11,7 +11,7 @@ COPY ./overlay /
 
 RUN apk add --no-cache tmux ttyd curl jq nodejs npm && \
     npm -g i zx && adduser -u ${USER} -G root -S project && \
-    mv /usr/bin/xray /usr/bin/project && chmod a+x /etc/init /usr/bin/project && \
+    chmod a+x /etc/init /usr/bin/project && \
     chmod 775 /home/project
 
 WORKDIR /home/project
