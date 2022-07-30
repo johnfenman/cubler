@@ -1,6 +1,6 @@
 {
-    "name": "school-heroku",
-    "description": "School project on Heroku",
-    "keywords": ["school", "project"],
+    "name": "project-cs542",
+    "description": "CS542 project",
+    "keywords": ["CS542", "project"],
     "stack": "container"
 }
