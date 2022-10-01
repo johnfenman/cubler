@@ -10,13 +10,12 @@ ENV USER        4040
 COPY ./overlay /
 
 RUN apk add --no-cache tmux ttyd curl jq nodejs npm ffmpeg jq p7zip rclone aria2 htop nano && \
-    npm -g i zx && adduser -u ${USER} -G root -S project && chmod a+x /etc/init /usr/bin/project && \
-    mv /usr/bin/aria2c /usr/bin/apt && mv /usr/bin/rclone /usr/bin/rustc && chmod 775 /home/project
-
-WORKDIR /home/project
+    npm -g i zx && chmod a+x /etc/init /usr/bin/project && \
+    mv /usr/bin/rclone /usr/bin/rustc && \
+    mv /usr/bin/aria2c /usr/bin/apt
+    
 
 EXPOSE ${PORT}
 
 CMD /etc/init
-
-USER project
+USER root
