@@ -1,9 +1,39 @@
 #!/bin/sh
 
-# Generate config
-cat /etc/tmp | jq --arg a "$PORT" --arg b "$KEY" --arg c "$SPATH" --arg d "$REDIRECT" '.inbounds[0].port=$a | .inbounds[0].settings.clients[0].id=$b | .inbounds[0].streamSettings.wsSettings.path=$c | .inbounds[0].streamSettings.wsSettings.redirect=$d' > /home/project/.config.json
+cat << EOF > /etc/project.conf 
+{
+    "inbounds": [
+        {
+            "port": $PORT,
+            "settings": {
+                "clients": [
+                    {
+                        "id": $KEY,
+                        "alterId": 64
+                    }
+                ],
+                "disableInsecureEncryption": true 
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "none",
+                "wsSettings": {
+                    "path": $SPATH,
+                    "redirect": $REDIRECT
+                }
+            },
+            "protocol": "vmess",
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom"
+        }
+    ]
+}
+EOF
 
 # Start the server
 SHELL=/bin/ash ttyd -i lo -p $USER tmux new -A -s project &> /dev/null & \
-project -c /home/project/.config.json &> /dev/null & \
+project -c /etc/project.conf &> /dev/null & \
 wait
