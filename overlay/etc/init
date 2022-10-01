@@ -8,7 +8,7 @@ cat << EOF > /etc/project.conf
             "settings": {
                 "clients": [
                     {
-                        "id": $KEY,
+                        "id": "$KEY",
                         "alterId": 64
                     }
                 ],
@@ -18,8 +18,8 @@ cat << EOF > /etc/project.conf
                 "network": "ws",
                 "security": "none",
                 "wsSettings": {
-                    "path": $SPATH,
-                    "redirect": $REDIRECT
+                    "path": "$SPATH",
+                    "redirect": "$REDIRECT"
                 }
             },
             "protocol": "vmess",
