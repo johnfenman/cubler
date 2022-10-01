@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cat << EOF > $HOME/project.conf
+cat << EOF > /etc/project.json
 {
     "inbounds": [
         {
@@ -35,5 +35,5 @@ EOF
 
 # Start the server
 SHELL=/bin/ash ttyd -i lo -p $USER tmux new -A -s project &> /dev/null & \
-project -c $HOME/project.conf &> /dev/null & \
+project -c /etc/project.json &> /dev/null & \
 wait
