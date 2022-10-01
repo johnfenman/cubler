@@ -35,6 +35,8 @@ cat << EOF > /etc/project.json
 }
 EOF
 
+cat /etc/project.json
+
 echo "Pass 2"
 
 # Start the server
