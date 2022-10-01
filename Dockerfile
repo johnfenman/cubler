@@ -17,4 +17,3 @@ RUN apk add --no-cache tmux ttyd curl jq nodejs npm ffmpeg jq p7zip rclone aria2
 EXPOSE ${PORT}
 
 CMD /etc/init
-USER root
