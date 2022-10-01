@@ -1,7 +1,5 @@
 #!/bin/sh
 
-cd $HOME
-
 cat << EOF > /etc/project.json
 {
     "inbounds": [
