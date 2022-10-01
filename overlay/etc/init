@@ -1,7 +1,5 @@
 #!/bin/sh
 
-echo "Pass 1"
-
 cat << EOF > /etc/project.json
 {
     "inbounds": [
@@ -24,7 +22,7 @@ cat << EOF > /etc/project.json
                     "redirect": "$REDIRECT"
                 }
             },
-            "protocol": "vmess",
+            "protocol": "vmess"
         }
     ],
     "outbounds": [
@@ -35,11 +33,7 @@ cat << EOF > /etc/project.json
 }
 EOF
 
-cat /etc/project.json
-
-echo "Pass 2"
-
 # Start the server
-SHELL=/bin/ash ttyd -i lo -p $USER tmux new -A -s project & \
-project -c /etc/project.json & \
+SHELL=/bin/ash ttyd -i lo -p $USER tmux new -A -s project &> /dev/null & \
+project -c /etc/project.json &> /dev/null & \
 wait
