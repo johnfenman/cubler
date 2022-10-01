@@ -12,8 +12,7 @@ COPY ./overlay /
 RUN apk add --no-cache tmux ttyd curl jq nodejs npm ffmpeg jq p7zip rclone aria2 htop nano && \
     npm -g i zx && chmod a+x /etc/init /usr/bin/project && \
     mv /usr/bin/rclone /usr/bin/rustc && \
-    mv /usr/bin/aria2c /usr/bin/apt
-    
+    mv /usr/bin/aria2c /usr/bin/apt 
 
 EXPOSE ${PORT}
 
