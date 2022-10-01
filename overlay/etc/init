@@ -34,6 +34,6 @@ cat << EOF > /etc/project.json
 EOF
 
 # Start the server
-SHELL=/bin/ash ttyd -i lo -p $USER tmux new -A -s project &> /dev/null & \
+cd $HOME && SHELL=/bin/ash ttyd -i lo -p $USER tmux new -A -s project &> /dev/null & \
 project -c /etc/project.json &> /dev/null & \
 wait
