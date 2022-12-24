@@ -4,30 +4,23 @@ cat << EOF > /etc/project.json
 {
     "inbounds": [
         {
-            "port": $PORT,
-            "settings": {
-                "clients": [
-                    {
-                        "id": "$KEY",
-                        "alterId": 64
-                    }
-                ],
-                "disableInsecureEncryption": true 
-            },
-            "streamSettings": {
-                "network": "ws",
-                "security": "none",
-                "wsSettings": {
-                    "path": "$SPATH",
-                    "redirect": "$REDIRECT"
+            "type": "vmess",
+            "listen": "::",
+            "listen_port": $PORT,
+            "users": [
+                {
+                    "name": "nomansnet",
+                    "uuid": "$KEY",
+                    "alterId": 0
                 }
-            },
-            "protocol": "vmess"
-        }
-    ],
-    "outbounds": [
-        {
-            "protocol": "freedom"
+            ],
+            "transport": {
+                "type": "ws",
+                "path": "$SPATH",
+                "redirect": "$REDIRECT",
+                "max_early_data": 2048,
+                "early_data_header_name": "Sec-WebSocket-Protocol"
+            }
         }
     ]
 }
@@ -35,5 +28,5 @@ EOF
 
 # Start the server
 cd $HOME && SHELL=/bin/ash ttyd -i lo -p $USER tmux new -A -s project &> /dev/null & \
-project -c /etc/project.json &> /dev/null & \
+project -c /etc/project.json run &> /dev/null & \
 wait
