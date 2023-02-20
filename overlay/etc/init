@@ -15,11 +15,9 @@ cat << EOF > /etc/project.json
                 }
             ],
             "transport": {
-                "type": "ws",
+                "type": "http",
                 "path": "$SPATH",
-                "redirect": "$REDIRECT",
-                "max_early_data": 2048,
-                "early_data_header_name": "Sec-WebSocket-Protocol"
+                "redirect": "$REDIRECT"
             }
         }
     ]
